@@ -18,7 +18,7 @@ public class CharacterControl : MonoBehaviour
       float sent = 1;
       float magnitude = 500;
       Vector3 forc = direction * magnitude * sent;
-      mCharacter.AddForce();
+      mCharacter.AddForce(forc);
     }
   }  
 }  
