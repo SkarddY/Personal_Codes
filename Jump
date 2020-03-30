@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+
+public class CharacterControl : MonoBehaviour 
+{
+  Rigidbody mCharacter;
+  
+  void Start()
+  {
+    mCharacter = GetComponent<Rigidbody>();
+  }
+  
+  void Update() 
+  {
+    if (Input.GetButtonDown("Jump"))
+    {
+      Vector3 direction = new Vector3(0, 1, 0);
+      float sent = 1;
+      float magnitude = 500;
+      Vector3 forc = direction * magnitude * sent;
+      mCharacter.AddForce();
+    }
+  }  
+}  
+
