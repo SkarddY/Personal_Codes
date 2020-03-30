@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+
+public class PlayerHealth : MonoBehaviour
+{
+  public Slider sliderHealth;
+  public float maxHealth = 100, currentHealth=0, damage = 20;
+  
+  private void Awake()
+  {
+    currentHealth = maxHealth;
+    sliderHealth.value = 100;
+  }
+  
+  //Losing Healt
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (collision.gameObject.tag.Equals("Enemy"))
+        {
+          sliderHealth.value -= damage
+          if (sliderHealth.value <= 0) death();
+        }
+    
+    //Recover Health
+    if (collision.gameObject.tag.Equals("Health"))
+        {
+          sliderHealth.value += 25;
+        }
+  }
+  //Death
+  public void death()
+  {
+      if (sliderHealth.value <= 0)
+      {          
+          gameObject.SetActive(false);
+          sliderHealth.fillRect.gameObject.SetActive(false);
+      }
+  }
+}
+  
+  
