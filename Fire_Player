@@ -2,3 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+public class Weapon : MonoBehaviour
+{
+   public Transform firePoint; //The bullet start here
+   public GameObject bulletPrefab;
+   public float currentAmmunition = 0, maxAmmo = 10;
+   public Text currentAmmoText; //Text in game to display ammo
+   private void Start()
+   {
+   currentAmmunition = 0;
+   currentAmmoText.text = "";
+   currentAmmoText.text = currentAmmunition.ToString() + "/" + maxAmmo.ToString(); //Display current ammo in game
+   }
+   void Update()
+   {
+      if (currentAmmoText != null)
+      {
+          currentAmmoText.text = currentAmmunition.ToString() + "/" + maxAmmo.ToString(); //Update current ammo in game
+      }
+      if (Input.GetButtonDown("Fire1") && currentAmmunition > 0 && currentAmmunition > 0)
+      {
+          Shoot();
+          currentAmmunition--;
+      }
+      //Don't let the ammo be values under 0
+      if (currentAmmunition <= 0)
+      {
+          currentAmmunition = 0;
+      }
+   }
+   //Shots fired
+   public void Shoot()
+   {
+     Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+   }
+}     
+
